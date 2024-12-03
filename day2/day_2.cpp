@@ -22,22 +22,48 @@ int day_2() {
         std::vector<int> currentReport;
         int number;
         bool isSafe = true;
+        int errorCount = 0;
+        bool isIncreasing = true;
 
         while (lineStream >> number) {
                 currentReport.push_back(number);
 
         }
 
+        if (currentReport[0] > currentReport[1]) {
+            isIncreasing = false;
+        }
+
 
         if (!std::ranges::is_sorted(currentReport, std::greater<>()) &&
             !std::ranges::is_sorted(currentReport)) {
-            goto loopEnd;
+
+
+            for (int i = 0; i < currentReport.size() -1; i++ ) {
+                if (isIncreasing && currentReport[i] < currentReport[i+1]){
+
+                } else if (!isIncreasing && currentReport[i] > currentReport[i+1]) {
+
+                } else {
+                    errorCount += 1;
+                }
+
+                if (errorCount == 2) {
+                    goto loopEnd;
+                }
+            }
+
+
         }
 
         for (int i = 0; i < currentReport.size() - 1 ; i++) {
             int currentComparrison = std::abs(currentReport[i] - currentReport[i + 1]);
             if (currentComparrison > 3 || currentComparrison == 0) {
-                goto loopEnd;
+                errorCount += 1;
+
+                if (errorCount == 2) {
+                    goto loopEnd;
+                }
             }
 
         }

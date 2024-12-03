@@ -9,7 +9,7 @@ I'm using this years edition to try learn more about C++ and get more comfortabl
 and its extended libraries.
 
 [x] Day One  
-[ ] Day Two  
+[x] Day Two  
 [ ] Day Three  
 [ ] Day Four  
 [ ] Day Five
