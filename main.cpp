@@ -6,10 +6,12 @@
 
 
 #include "day1/day_1.h"
+#include "day2/day_2.h"
 
 int main() {
 
 
     std::cout << "Answer for day 1: " << day_1() << "\n";
+    std::cout << "Answer for day 2: " << day_2() << "\n";
     return 0;
 }
