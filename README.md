@@ -10,6 +10,6 @@ and its extended libraries.
 
 [x] Day One  
 [x] Day Two  
-[ ] Day Three  
+[/] Day Three  
 [ ] Day Four  
 [ ] Day Five

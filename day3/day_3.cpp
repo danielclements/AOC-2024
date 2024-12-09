@@ -4,55 +4,35 @@
 
 #include "day_3.h"
 
-#include <string.h>
-
 int day_3() {
     std::string currentLine;
     std::ifstream inputFile;
+
     inputFile.open("C:/Users/danie/CLionProjects/advent-of-code-2024/day3/input.txt");
 
-    std::regex regexPattern(R"(mul\((\d+,\d+)\))");  //Regex expression to match to mul(0-1000,0-1000) mul\\((?=)[1-9].?.?,[0-9].?.??(?!= or ?<!)\\)
+    std::regex regexPattern(R"(mul\((\d+),(\d+)\))");
     int runningCount = 0;
 
-
-
     while (getline(inputFile, currentLine)) {
-        std::string linee;
-        std::istringstream lineStream(currentLine);
+        std::smatch match;
 
 
+        while (std::regex_search(currentLine, match, regexPattern)) {
+            if (match.size() == 3) {
+                int n1 = std::stoi(match[1].str());
+                int n2 = std::stoi(match[2].str());
 
-        std::vector<std::string> matchBucket;
 
-        while (lineStream >> linee) {
-            matchBucket = std::vector<std::string>{
-                std::sregex_token_iterator{linee.begin(), linee.end(), regexPattern},
-                std::sregex_token_iterator{}};
-        }
-
-        int n1 = 0;
-        int n2 = 0;
-
-        for (std::string i : matchBucket) {
-            for (int j = 0; j < i.size(); j++) {
-                auto debug = i[j];
-                if (strcmp(&debug,"(")) {
-                    std::cout << i[j] << std::endl;
-                }
+                runningCount += n1 * n2;
             }
+
+
+            currentLine = match.suffix().str();
         }
+    }
 
-        }
-
-
-
-
-        return runningCount;
-        }
-
-        // https://en.cppreference.com/w/cpp/regex/regex_iterator
-        // https://en.cppreference.com/w/cpp/regex
-
+    return runningCount;
+}
 
 
 
